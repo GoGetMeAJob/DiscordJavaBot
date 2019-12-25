@@ -10,16 +10,15 @@ You can then build the application or run it from your IDE as any other Spring b
 
 For writing your own command you can take a look at "de/nosyntax/discordbot/commands/PingCommand.java".
 
-@Commands
-public class PingCommand  {
-    private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-
-    @CommandHandler(command = "ping")
-    public void handleCommand(Command command) {
-        LOG.debug("Received command: {}", command.getMessage());
-        command.getEvent().getChannel().sendMessage("Pong!").queue();
+    @Commands
+    public class PingCommand  {
+        private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+        @CommandHandler(command = "ping")
+        public void handleCommand(Command command) {
+            LOG.debug("Received command: {}", command.getMessage());
+            command.getEvent().getChannel().sendMessage("Pong!").queue();
+        }
     }
-}
 
 Basically you just have to annotate the class that contains your commands with @Commands.
 
