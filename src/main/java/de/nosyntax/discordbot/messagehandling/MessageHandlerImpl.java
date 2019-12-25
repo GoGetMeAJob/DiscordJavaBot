@@ -1,4 +1,4 @@
-package de.nosyntax.discordbot.messagehandler;
+package de.nosyntax.discordbot.messagehandling;
 
 import de.nosyntax.discordbot.model.Command;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -16,7 +16,7 @@ import java.lang.invoke.MethodHandles;
 
 
 @Service
-public class MessageServiceImpl extends ListenerAdapter implements EventListener {
+public class MessageHandlerImpl extends ListenerAdapter implements EventListener {
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 
@@ -26,7 +26,7 @@ public class MessageServiceImpl extends ListenerAdapter implements EventListener
     private final String commandPrefix;
 
     @Autowired
-    public MessageServiceImpl(CommandGateway commandGateway,
+    public MessageHandlerImpl(CommandGateway commandGateway,
                               @Value("${bot.command.prefix:!}") String commandPrefix) {
         this.commandGateway = commandGateway;
         this.commandPrefix = commandPrefix;

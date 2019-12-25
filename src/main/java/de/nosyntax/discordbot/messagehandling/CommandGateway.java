@@ -1,4 +1,4 @@
-package de.nosyntax.discordbot.messagehandler;
+package de.nosyntax.discordbot.messagehandling;
 
 import de.nosyntax.discordbot.model.Command;
 import org.springframework.integration.annotation.Gateway;

@@ -1,6 +1,5 @@
-package de.nosyntax.discordbot.messagehandler;
+package de.nosyntax.discordbot.messagehandling;
 
-import de.nosyntax.discordbot.model.Command;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.internal.entities.ReceivedMessage;
@@ -13,7 +12,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-class MessageServiceImplTest {
+class MessageHandlerImplTest {
 
     @Mock
     private CommandGateway mockCommandGateway;
@@ -21,12 +20,12 @@ class MessageServiceImplTest {
     private JDA jda;
     @Mock ReceivedMessage message;
 
-    private MessageServiceImpl messageServiceImplUnderTest;
+    private MessageHandlerImpl messageHandlerImplUnderTest;
 
     @BeforeEach
     void setUp() {
         initMocks(this);
-        messageServiceImplUnderTest = new MessageServiceImpl(mockCommandGateway, "!");
+        messageHandlerImplUnderTest = new MessageHandlerImpl(mockCommandGateway, "!");
     }
 
     @Test
@@ -36,7 +35,7 @@ class MessageServiceImplTest {
         when(message.getContentRaw()).thenReturn("!ping");
 
         // Run the test
-        messageServiceImplUnderTest.onMessageReceived(event);
+        messageHandlerImplUnderTest.onMessageReceived(event);
 
         // Verify the results
         verify(mockCommandGateway).processCommand(any(Message.class));
@@ -49,7 +48,7 @@ class MessageServiceImplTest {
         when(message.getContentRaw()).thenReturn("ping");
 
         // Run the test
-        messageServiceImplUnderTest.onMessageReceived(event);
+        messageHandlerImplUnderTest.onMessageReceived(event);
 
         // Verify the results
         verify(mockCommandGateway, never()).processCommand(any(Message.class));

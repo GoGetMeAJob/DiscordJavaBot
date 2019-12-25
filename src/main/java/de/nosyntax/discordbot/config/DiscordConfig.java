@@ -1,6 +1,6 @@
 package de.nosyntax.discordbot.config;
 
-import de.nosyntax.discordbot.messagehandler.MessageServiceImpl;
+import de.nosyntax.discordbot.messagehandling.MessageHandlerImpl;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -14,10 +14,10 @@ import javax.security.auth.login.LoginException;
 public class DiscordConfig {
     @Value("${bot.token}")
     private String stringValue;
-    private final MessageServiceImpl messageService;
+    private final MessageHandlerImpl messageService;
 
     @Autowired
-    public DiscordConfig(MessageServiceImpl messageService) {
+    public DiscordConfig(MessageHandlerImpl messageService) {
         this.messageService = messageService;
     }
 
